@@ -1,0 +1,131 @@
+# How to Run E-Shopping Cart
+
+## Quick Start
+
+Your application is now ready to run! Choose your preferred method below:
+
+### **Option 1: Using the Batch File (Recommended for Windows)**
+
+Double-click `run.bat` in the project folder.
+
+```bash
+run.bat
+```
+
+This will:
+1. Compile all source files
+2. Start the application
+3. Open the login window
+
+### **Option 2: Using PowerShell**
+
+```powershell
+.\run.ps1
+```
+
+This will:
+1. Compile all source files
+2. Start the application
+3. Open the login window
+
+### **Option 3: Manual Command Line (Windows)**
+
+```bash
+cd "E-shoppingCart-master"
+java -cp "build\classes;lib\*" com.eshop.ui.LoginFrame
+```
+
+### **Option 4: Manual Command Line (Linux/Mac)**
+
+```bash
+cd E-shoppingCart-master
+java -cp "build/classes:lib/*" com.eshop.ui.LoginFrame
+```
+
+## Test Credentials
+
+### Admin Account
+- **Username**: admin
+- **Password**: admin123
+- **Role**: Administrator
+- **Features**: Can access Admin Console (⚙️) to add products
+
+### Regular User Account
+- **Username**: Any created user with role = 'customer'
+- **Password**: Their password
+- **Features**: Can browse and purchase products
+
+## Key Points
+
+✅ **Always use the full classpath** including `lib/*` to load all required libraries  
+✅ **Java must be installed** and available in your system PATH  
+✅ **MySQL must be running** with the database set up (see database-setup.md)  
+✅ **The `images` directory** will be created automatically for product images  
+
+## Troubleshooting
+
+### "Could not find or load main class"
+**Solution**: Make sure you're using the correct classpath format:
+- Windows: `build\classes;lib\*`
+- Linux/Mac: `build/classes:lib/*`
+
+### Database Connection Error
+**Solution**: 
+1. Verify MySQL is running
+2. Check database credentials in `src/com/eshop/database/DatabaseConnection.java`
+3. Ensure the database and tables are created
+
+### ClassNotFoundException
+**Solution**:
+1. Ensure `build/classes` directory exists
+2. Recompile: `javac -d build/classes -sourcepath src -cp "lib/*" src/com/eshop/**/*.java`
+3. Check that all Java files are in the `src` directory
+
+### Admin Console Not Visible
+**Solution**:
+1. Login with an admin account (role = 'admin')
+2. Check database: `SELECT * FROM users WHERE role = 'admin'`
+3. If no admin exists, create one: `INSERT INTO users (...) VALUES (..., 'admin')`
+
+## File Locations
+
+```
+E-shoppingCart-master/
+├── run.bat              ← Click this to run (Windows)
+├── run.ps1              ← Or run this (PowerShell)
+├── build/
+│   └── classes/         ← Compiled Java classes
+├── src/                 ← Source code
+├── lib/
+│   └── mysql-connector-j-8.0.33.jar
+├── images/              ← Product images (auto-created)
+└── database.sql         ← Database schema (if provided)
+```
+
+## Compilation
+
+To manually compile all source files:
+
+```bash
+javac -d build/classes -sourcepath src -cp "lib/*" src/com/eshop/**/*.java
+```
+
+## What's Included
+
+✅ Login & Registration system  
+✅ Product browse & shopping cart  
+✅ Admin console for product management  
+✅ Product image upload support  
+✅ Wishlist functionality  
+✅ Account management  
+✅ Order history  
+
+## Next Steps
+
+1. Run the application using `run.bat` or `run.ps1`
+2. Create or use an admin account
+3. Login and explore features
+4. Use Admin Console (⚙️) to add products with images
+5. Browse as a regular user
+
+Enjoy! 🎉
